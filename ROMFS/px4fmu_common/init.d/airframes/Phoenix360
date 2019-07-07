@@ -1,0 +1,65 @@
+#!/bin/sh
+#
+# @name Phoenix 360
+#
+# @type Helicopter
+# @class Copter
+#
+# @maintainer C Sledge <csledge@uci.edu>
+#
+# @output MAIN1 FwdR Swash 1
+# @output MAIN2 FwdR Swash 6
+# @output MAIN3 FwdR Swash 2
+# @output MAIN4 FwdL Swash 1
+# @output MAIN5 FwdL Swash 6
+# @output MAIN6 FwdL Swash 2
+# @output MAIN7 Fwd  Motor
+# @output MAIN8 Aft  Motor
+# @output AUX1  AftR Swash 1
+# @output AUX2  AftR Swash 6
+# @output AUX3  AftR Swash 2
+# @output AUX4  AftL Swash 1
+# @output AUX5  AftL Swash 6
+# @output AUX6  AftL Swash 2
+#
+
+sh /etc/init.d/rc.mc_defaults
+
+# Configure as helicopter (number 4 defined in commander_helper.cpp)
+set MAV_TYPE 4
+
+set MIXER Phoenix360
+
+#set PWM_OUT 1234
+
+if [ $AUTOCNF = yes ]
+then
+	param set ATT_BIAS_MAX 0
+
+	param set CBRK_IO_SAFETY 22027
+
+	param set MC_ROLL_P 5
+	param set MC_ROLLRATE_P 0
+	param set MC_ROLLRATE_I 0
+	param set MC_ROLLRATE_D 0
+	param set MC_ROLLRATE_FF 0.15
+	param set MC_PITCH_P 6.5
+	param set MC_PITCHRATE_P 0
+	param set MC_PITCHRATE_I 0
+	param set MC_PITCHRATE_D 0
+	param set MC_PITCHRATE_FF 0.15
+	param set MC_YAW_P 3
+	param set MC_YAWRATE_P 0.1
+	param set MC_YAWRATE_I 0
+	param set MC_YAWRATE_D 0
+	param set MC_ROLLRATE_MAX 720
+	param set MC_PITCHRATE_MAX 720
+	param set MC_YAWRATE_MAX 400
+	param set MC_ACRO_R_MAX 360
+	param set MC_ACRO_P_MAX 360
+
+	param set MPC_THR_MIN 0.06
+	param set MPC_MANTHR_MIN 0.06
+
+	param set PWM_MIN 1000
+fi
